@@ -9,6 +9,6 @@
         public string PhienBan { get; set; }
         public bool TrangThai { get; set; }
         public string AnhSach { get; set; }
-        public decimal Gias { get; set; }
+        public decimal Gia { get; set; }
     }
 }
