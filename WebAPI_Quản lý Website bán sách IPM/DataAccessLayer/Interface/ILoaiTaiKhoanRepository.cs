@@ -18,5 +18,6 @@ namespace DataAccessLayer
         bool Delete(int id);
 
         public List<LoaiTaiKhoanModel> Search(int pageIndex, int pageSize, out long total, string PhanQuyen, string TenChucDanh);
+        List<LoaiTaiKhoanModel> getAll_LTK();
     }
 }

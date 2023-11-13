@@ -34,5 +34,9 @@ namespace BusinessLogicLayer
         {
             return _res.Search(pageIndex, pageSize, out total, PhanQuyen, TenChucDanh);
         }
+        public List<LoaiTaiKhoanModel> getAll_LTK()
+        {
+            return _res.getAll_LTK();
+        }    
     }
 }

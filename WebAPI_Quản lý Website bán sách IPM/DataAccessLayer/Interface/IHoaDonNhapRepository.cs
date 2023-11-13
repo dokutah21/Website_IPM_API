@@ -17,6 +17,6 @@ namespace DataAccessLayer
         
         bool Delete(int id);
 
-        public List<ThongKeSanPhamModel> Search(int pageIndex, int pageSize, out long total, string TenSach, DateTime? fr_NgayNhap, DateTime? to_NgayNhap);
+        //public List<HoaDonNhapModel> Search(int pageIndex, int pageSize, out long total, string TenSach, DateTime? fr_NgayNhap, DateTime? to_NgayNhap);
     }
 }

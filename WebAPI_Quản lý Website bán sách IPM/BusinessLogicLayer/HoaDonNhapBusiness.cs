@@ -30,9 +30,9 @@ namespace BusinessLogicLayer
             return _res.Delete(id);
         }
 
-        public List<ThongKeSanPhamModel> Search(int pageIndex, int pageSize, out long total, string TenSach, DateTime? fr_NgayNhap, DateTime? to_NgayNhap)
-        {
-            return _res.Search(pageIndex, pageSize, out total, TenSach, fr_NgayNhap, to_NgayNhap);
-        }
+        //public List<ThongKeSanPhamModel> Search(int pageIndex, int pageSize, out long total, string TenSach, DateTime? fr_NgayNhap, DateTime? to_NgayNhap)
+        //{
+        //    return _res.Search(pageIndex, pageSize, out total, TenSach, fr_NgayNhap, to_NgayNhap);
+        //}
     }
 }

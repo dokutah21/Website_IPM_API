@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quanly LoaiTaiKhoan</title>
+    <script src="/angular.min.js"></script>
+    <script src="./loaitaikhoan.js"></script>
+</head>
+<body ng-app="loaitaikhoanModule" ng-controller="loaitaikhoanCtrl" ng-init="showFormQL_LTK=false">
+    <H3>Quản lý loại tài khoản</H3>
+    <button ng-click="add_LTK()">Thêm mới</button>
+    <!-- Danh sách loại tài khoản -->
+    <table border="1" cellpacing="5">
+        <thead>
+            <td>Mã LTK</td>
+            <td>Phân Quyền</td>
+            <td>Tên chức danh</td>
+            <td>Tác vụ</td>
+        </thead>
+        <tr ng-repeat="x in danhsachLTK">
+            <td>{{x.maLoai}}</td>
+            <td>{{x.phanQuyen}}</td>
+            <td>{{x.tenChucDanh}}</td>
+            <td>
+                <button style="background-color: red;color: white; " ng-click="deleteTK_byID(x.maLoai)">-</button>
+                <button style="background-color: red;color: white; " ng-click="editLTK(x)">Edit</button>
+               
+            </td>
+            </td>
+            </td>
+        </tr>
+    </table>
+    <div class="formQL_LTK" ng-show="showFormQL_LTK" >
+        <style>
+            .formQL_LTK
+            {
+                width: 500px;
+                height: 500px;
+                position: fixed;
+                background-color: rgb(197, 196, 196);
+                top:5%;
+                left: 25%;
+            }
+           
+        </style>
+        <h4>{{titleForm}}</h4>
+        <span style="background-color: red;color:  white;position: absolute;right: 3px;top: 2px;" ng-click="outForm()">X</span>
+        <span style="width: 200px;" class="tieude">Mã Loại Tài Khoản</span> <input type="number" placeholder=" Nhập mã tài khoản" ng-model="maLoai"><br>
+        <span  style="width: 200px;" class="tieude">Phân Quyền</span> 
+        <select  class="tieude" ng-model="phanQuyen">
+            <option value="Admin">Admin</option>
+            <option value="Customer">Khách hàng</option>
+            <option value="Nhân viên">Nhân Viên</option>
+        </select>
+        <br>
+        <span  style="width: 200px;"  class="tieude"n>Tên chức danh</span> <input type="text" placeholder=" Nhập tên chức danh" ng-model="tenChucDanh"><br>
+        <button ng-click="save()">Save</button>
+    </div>
+</body>
+</html>

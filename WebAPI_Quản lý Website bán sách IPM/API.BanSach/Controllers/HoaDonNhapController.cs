@@ -69,12 +69,12 @@ namespace API.BanSach.Controllers
                     to_NgayNhap = new DateTime(dt.Year, dt.Month, dt.Day, 23, 59, 59, 999);
                 }
                 long total = 0;
-                var data = _HoaDonNhapBusiness.Search(page, pageSize, out total, TenSach, fr_NgayNhap, to_NgayNhap);
+                //var data = _HoaDonNhapBusiness.Search(page, pageSize, out total, TenSach, fr_NgayNhap, to_NgayNhap);
                 return Ok(
                     new
                     {
                         TotalItems = total,
-                        Data = data,
+                        //Data = data,
                         Page = page,
                         PageSize = pageSize
                     }

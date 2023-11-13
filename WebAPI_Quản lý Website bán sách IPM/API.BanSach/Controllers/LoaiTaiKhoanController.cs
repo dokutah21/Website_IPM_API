@@ -40,10 +40,21 @@ namespace API.BanSach.Controllers
 
         [Route("delete-LoaiTaiKhoan")]
         [HttpDelete]
-        public int DeleteItem(int id)
+        public IActionResult DeleteItem(int id)
         {
-            _LoaiTaiKhoanBusiness.Delete(id);
-            return id;
+
+            if (_LoaiTaiKhoanBusiness.Delete(id))
+            {
+                return Ok(true);
+            }
+            return BadRequest(false);
+        }
+
+        [Route("GetAll_LTK")]
+        [HttpGet]
+        public List<LoaiTaiKhoanModel> getAll_LTK()
+        {
+            return _LoaiTaiKhoanBusiness.getAll_LTK();
         }
 
         [Route("search-LoaiTaiKhoan")]
@@ -75,5 +86,6 @@ namespace API.BanSach.Controllers
                 throw new Exception(ex.Message);
             }
         }
+        
     }
 }

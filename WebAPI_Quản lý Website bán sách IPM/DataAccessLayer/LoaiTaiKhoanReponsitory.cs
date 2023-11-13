@@ -108,5 +108,24 @@ namespace DataAccessLayer
                 throw ex;
             }
         }
+        public List<LoaiTaiKhoanModel> getAll_LTK()
+        {
+
+            string msgError = "";
+            try
+            {
+                var result = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_getAll_LTK");
+                if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
+                {
+                    throw new Exception(Convert.ToString(result) + msgError);
+                }
+              return result.ConvertTo<LoaiTaiKhoanModel>().ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
     } 
 }

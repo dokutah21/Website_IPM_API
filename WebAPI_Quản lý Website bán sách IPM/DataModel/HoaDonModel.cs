@@ -22,7 +22,6 @@
         public int MaHoaDon { get; set; }
         public int MaSach { get; set; }
         public int MaGiamGia { get; set; }
-        public int MaKhuVuc { get; set; }
         public int SoLuong { get; set; }
         public decimal TongGia { get; set; }
     }

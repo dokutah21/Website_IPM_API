@@ -16,6 +16,7 @@ namespace BusinessLogicLayer
         bool Update(LoaiTaiKhoanModel model);
 
         bool Delete(int id);
+        List<LoaiTaiKhoanModel> getAll_LTK();
 
         public List<LoaiTaiKhoanModel> Search(int pageIndex, int pageSize, out long total, string PhanQuyen, string TenChucDanh);
     }
