@@ -9,6 +9,7 @@ namespace DataAccessLayer
 {
     public partial interface IGiamGiaRepository
     {
+        List<GiamGiaModel> getAll_GiamGia();
         GiamGiaModel GetDatabyID(string id);
 
         bool Create(GiamGiaModel model);
@@ -16,6 +17,8 @@ namespace DataAccessLayer
         bool Update(GiamGiaModel model);
 
         bool Delete(int id);
+
+        bool DeleteMultiple(string id);
 
         public List<GiamGiaModel> Search(int pageIndex, int pageSize, out long total, string TenMaGiamGia, int SoTienGiam);
     }

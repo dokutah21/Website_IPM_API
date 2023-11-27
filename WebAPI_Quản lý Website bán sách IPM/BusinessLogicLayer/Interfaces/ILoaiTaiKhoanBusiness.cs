@@ -9,6 +9,9 @@ namespace BusinessLogicLayer
 {
     public partial interface ILoaiTaiKhoanBusiness
     {
+
+        List<LoaiTaiKhoanModel> getAll_LTK();
+
         LoaiTaiKhoanModel GetDatabyID(string id);
 
         bool Create(LoaiTaiKhoanModel model);
@@ -16,7 +19,8 @@ namespace BusinessLogicLayer
         bool Update(LoaiTaiKhoanModel model);
 
         bool Delete(int id);
-        List<LoaiTaiKhoanModel> getAll_LTK();
+
+        bool DeleteMultiple(string id);
 
         public List<LoaiTaiKhoanModel> Search(int pageIndex, int pageSize, out long total, string PhanQuyen, string TenChucDanh);
     }

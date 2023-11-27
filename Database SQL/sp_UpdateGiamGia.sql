@@ -6,7 +6,7 @@ create proc sp_UpdateGiamGia
 @ThoiGianKetThuc DATETIME,
 @SoLuongMa INT,
 @SoTienGiam VARCHAR(50),
-@TrangThai BIT
+@TrangThai NVARCHAR(50)
 as
 Update GiamGia
 set TenMaGiamGia = @TenMaGiamGia,

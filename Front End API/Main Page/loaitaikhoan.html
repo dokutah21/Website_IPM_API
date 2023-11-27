@@ -2,60 +2,190 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quanly LoaiTaiKhoan</title>
+    <link rel="stylesheet" href="MainPage.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="/library/angular.min.js"></script>
+    <script src="/library/angular.route.min.js"></script>
+    <script src="MainPage.js"></script>
+    <link rel="stylesheet" href="stylePage.css">
+
     <script src="/angular.min.js"></script>
-    <script src="./loaitaikhoan.js"></script>
+    <script src="./LoaiTaiKhoan.js"></script>
+   
+    <title>Admin Page</title>
 </head>
-<body ng-app="loaitaikhoanModule" ng-controller="loaitaikhoanCtrl" ng-init="showFormQL_LTK=false">
-    <H3>Quản lý loại tài khoản</H3>
-    <button ng-click="add_LTK()">Thêm mới</button>
-    <!-- Danh sách loại tài khoản -->
-    <table border="1" cellpacing="5">
-        <thead>
-            <td>Mã LTK</td>
-            <td>Phân Quyền</td>
-            <td>Tên chức danh</td>
-            <td>Tác vụ</td>
-        </thead>
-        <tr ng-repeat="x in danhsachLTK">
-            <td>{{x.maLoai}}</td>
-            <td>{{x.phanQuyen}}</td>
-            <td>{{x.tenChucDanh}}</td>
-            <td>
-                <button style="background-color: red;color: white; " ng-click="deleteTK_byID(x.maLoai)">-</button>
-                <button style="background-color: red;color: white; " ng-click="editLTK(x)">Edit</button>
-               
-            </td>
-            </td>
-            </td>
-        </tr>
-    </table>
-    <div class="formQL_LTK" ng-show="showFormQL_LTK" >
-        <style>
-            .formQL_LTK
-            {
-                width: 500px;
-                height: 500px;
-                position: fixed;
-                background-color: rgb(197, 196, 196);
-                top:5%;
-                left: 25%;
-            }
-           
-        </style>
-        <h4>{{titleForm}}</h4>
-        <span style="background-color: red;color:  white;position: absolute;right: 3px;top: 2px;" ng-click="outForm()">X</span>
-        <span style="width: 200px;" class="tieude">Mã Loại Tài Khoản</span> <input type="number" placeholder=" Nhập mã tài khoản" ng-model="maLoai"><br>
-        <span  style="width: 200px;" class="tieude">Phân Quyền</span> 
-        <select  class="tieude" ng-model="phanQuyen">
-            <option value="Admin">Admin</option>
-            <option value="Customer">Khách hàng</option>
-            <option value="Nhân viên">Nhân Viên</option>
-        </select>
-        <br>
-        <span  style="width: 200px;"  class="tieude"n>Tên chức danh</span> <input type="text" placeholder=" Nhập tên chức danh" ng-model="tenChucDanh"><br>
-        <button ng-click="save()">Save</button>
+<body  ng-app="loaitaikhoanModule" ng-controller="loaitaikhoanCtrl">
+    <!-- -->
+    <div class="container">
+       
+        <div class="content_left">
+            <img class="logo" src="image/ipm.png" alt="" style="width: 185px; height: 60px; ">
+            <div class="fuction_system" style="margin-top: 7%;margin-bottom: 7%;">Trang quản trị</div>
+
+        <div class="menu">
+            <div class="click_page"><i class="fas fa-house-user"></i><a href="#!"class="check_color" onclick="check_color(this)">Home profile</a></div>
+
+            <div class="click_page"><i class="far fa-chart-bar"></i><a href="#!"class="check_color" onclick="check_color(this)">Thống kê</a></div>
+
+            <div class="click_page"><i class="fab fa-elementor"></i>Thông tin chung &nbsp;&nbsp;&nbsp;&nbsp; <i class="fas fa-angle-down" onclick="checkedicon(this)"></i>
+                <ul class="menu2">
+                    <li><i class="fas fa-book" style="font-size: 15px;"></i><a href="./SanPham.html"class="check_color" onclick="check_color(this)">Quản lý sản phẩm</a></li>
+                    <li><i class="fas fa-industry" style="font-size: 15px;"></i><a href="./NhaXuatBan.html" class="check_color"onclick="check_color(this)">Quản lý nhà xuất bản</a></li>
+                    <li><i class="fas fa-users-cog" style="font-size: 15px;"></i><a href="./KhachHang.html" class="check_color"onclick="check_color(this)">Quản lý khách hàng</a></li>
+                    <li><i class="fas fa-truck" style="font-size: 15px;"></i><a href="./VanChuyen.html" class="check_color"onclick="check_color(this)">Quản lý vận chuyển</a></li>
+                    <li><i class="fas fa-tags" style="font-size: 15px;"></i><a href="./GiamGia.html" class="check_color"onclick="check_color(this)">Quản lý giảm giá</a></li>
+                </ul>
+            </div>
+
+            <div class="click_page"><i class="fas fa-tty"></i>Đơn hàng &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;  <i class="fas fa-angle-down" onclick="checkedicon(this)"></i>
+                <ul class="menu2">
+                    <li><i class="fas fa-scroll" style="font-size: 15px;"></i><a href="#!"class="check_color" onclick="check_color(this)">Quản lý hóa đơn</a></li>
+                    <li><i class="fas fa-calculator" style="font-size: 15px;"></i><a href="#!"class="check_color" onclick="check_color(this)">Quản lý hóa đơn nhập</a></li>
+                </ul>
+            </div>  
+            
+            <div class="click_page"><i class="fas fa-users"></i>Tài khoản &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;  <i class="fas fa-angle-down" onclick="checkedicon(this)"></i>
+                <ul class="menu2">
+                    <li><i class="fas fa-user" style="font-size: 15px;"></i><a href="./TaiKhoan.html"class="check_color" onclick="check_color(this)">Quản lý tài khoản</a></li>
+                    <li><i class="fas fa-user-tag" style="font-size: 15px;"></i><a target="_self" href="./LoaiTaiKhoan.html"class="check_color" onclick="check_color(this)">Quản lý loại tài khoản</a></li>
+                </ul>
+            </div>  
+        </div>     
     </div>
+
+
+    <div class="right">
+        <!-- Nội dung phải---header -->
+        <div class="content_right">
+            <div class="content-right-header">
+                <ul>
+                    <li>
+                        <i class="fa-solid fa-house-chimney-user"></i>
+                        <a href="./home.html">Admin page</a>
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-message"></i>
+                        <a href="#">Messages</a>
+                    </li>
+                    
+                    <li class="border-end">
+                        <i class="fa-solid fa-cogs"></i>
+                        <a href="#">Settings</a>
+                    </li>
+                    
+                    <li>
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        <a href="#">Logout</a>
+                    </li>
+                </ul>
+                <div class="admin-img">
+                    <p>Admin</p>
+                    <div class="img-admin"></div>
+                </div>
+            </div>
+
+            <div class="view-site" style="width: 96%; margin-left: 2%;margin-top: 8px;" ng-app="loaitaikhoanModule" ng-controller="loaitaikhoanCtrl" ng-init="showFormQL_LTK=false">
+                <H3 style="margin-left: 40%">QUẢN LÝ LOẠI TÀI KHOẢN</H3>
+
+                <button style="margin-bottom: 25px; margin-top: 20px; padding: 10px; background-color: white; border: 1px solid;" ng-click="add_LTK()">Thêm mới</button>
+                <button style="margin-bottom: 25px; margin-top: 20px; padding: 10px; background-color: white; border: 1px solid;" ng-click="deleteSelected()">Xóa nhiều</button>
+                
+                <input style="margin-bottom: 25px; margin-top: 20px; padding: 10px; float: right; width: 300px"  type="search" name="search" id="" class="navbar-search" placeholder="Nhập thông tin quyền cần tìm" ng-model="phanQuyen"  ng-change="LoadLTK()" > &ensp;
+                <input style="margin-bottom: 25px; margin-top: 20px; padding: 10px; float: right; width: 300px"  type="search" name="search" id="" class="navbar-search" placeholder="Nhập thông tin tên chức danh cần tìm" ng-model="tenChucDanh"  ng-change="LoadLTK()" > 
+
+                <div style="height: 50px; margin-top: -25px;">
+                    <label for="">Hiển thị list:</label>
+                    <select style="margin-bottom: 25px; margin-top: 20px; padding: 10px;"   id="pageSize " ng-change="LoadLTK()" ng-model="pageSize" convert-to-number >
+                        <option value="0">Hiển thị toàn bộ</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="6">6</option>
+                    </select>
+                </div><br>
+                
+                <div class="sanpham-table" style="height: 400px ">
+                    <!-- Danh sách loại tài khoản -->
+                    <table border="1" cellpacing="5">
+                        <thead style="background-color: #01a14b;">
+                            <td>Mã loại tài Khoản</td>
+                            <td>Phân quyền</td>
+                            <td>Tên chức danh</td>
+                            <td>Chọn</td>
+                            <td>Tác vụ</td>
+                        </thead>
+                        <tr ng-repeat="x in danhsachLTK | orderBy:'maLoai':sortOrder">
+                            <td>{{x.maLoai}}</td>
+                            <td>{{x.phanQuyen}}</td>
+                            <td>{{x.tenChucDanh}}</td>
+                            <td><input ng-model="x.selected" type="checkbox"></td>
+                            <td>
+                                <button style="background-color: red;color: white; padding: 5px 5px; border: 1px solid black;" ng-click="deleteTK_byID(x.maLoai)">-</button>
+                                <button style="background-color: red;color: white; padding: 5px 5px; border: 1px solid black;" ng-click="editLTK(x)">Edit</button>
+                            </td>
+                            </td>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+
+                <div class="formQL_LTK" ng-show="showFormQL_LTK">
+                    <style>
+                        .formQL_LTK
+                        {
+                            width: 80%; 
+                            margin-top: 8px;
+                            position: fixed;
+                            background-color: #ECF0F5;
+                            height: 100%;
+                            top: 7%;
+                            transition: 0.5s;
+                            margin-left: -20px;
+                        }
+
+                        .formQL_LTK span
+                        {
+                            font-size: 15px;
+                            color: #1D1D1D;
+                            text-transform: none;
+                        }
+
+                        .formQL_LTK .tieude
+                        {
+                            width: 200px;
+                            color: #1D1D1D;
+                            text-transform: none;
+                            height: 40px;
+                            font-size: 15px;
+                            padding: 5px;
+                        }
+                    
+                    </style>
+
+                    <span style="background-color: red; color:white; position: absolute;right: 5px;top: 5px; padding: 5px; border: 1px solid black;" ng-click="outForm()">x</span>
+                    <br>
+
+                    <span style="width: 200px;" class="tieude">Mã Loại Tài Khoản</span> <input type="number" placeholder=" Nhập mã tài khoản" ng-model="maLoai" min="1"><br>
+                    <br>
+
+                    <span  style="width: 200px;" class="tieude">Phân Quyền</span> 
+                        <select  class="tieude" ng-model="phanQuyen">
+                            <option value="Admin">Admin</option>
+                            <option value="Customer">Khách hàng</option>
+                            <option value="Employee">Nhân Viên</option>
+                        </select>
+                    <br><br>
+                    
+                    <span  style="width: 200px;"  class="tieude"n>Tên chức danh</span> <input type="text" placeholder=" Nhập tên chức danh" ng-model="tenChucDanh"><br>
+                    <br>
+                    
+                    <button  style="margin-bottom: 25px; margin-top: 20px; padding: 10px;" ng-click="save()">Save</button>
+                </div>
+            </div>    
+        </div>       
+    </div>   
 </body>
 </html>

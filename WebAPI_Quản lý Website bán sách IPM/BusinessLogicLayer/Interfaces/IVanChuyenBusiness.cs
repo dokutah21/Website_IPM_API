@@ -9,6 +9,7 @@ namespace BusinessLogicLayer
 {
     public partial interface IVanChuyenBusiness
     {
+        List<VanChuyenModel> getAll_VanChuyen();
         VanChuyenModel GetDatabyID(string id);
 
         bool Create(VanChuyenModel model);
@@ -17,6 +18,7 @@ namespace BusinessLogicLayer
 
         bool Delete(int id);
 
+        bool DeleteMultiple(string id);
         public List<VanChuyenModel> Search(int pageIndex, int pageSize, out long total, string TenKH, string DiaChi);
     }
 }

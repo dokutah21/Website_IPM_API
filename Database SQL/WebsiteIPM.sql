@@ -41,32 +41,23 @@ CREATE TABLE TaiKhoan
 	FOREIGN KEY (MaLoai) REFERENCES LoaiTaiKhoan(MaLoai)
 )
 
-CREATE TABLE ChiTietTaiKhoan
-(
-	MaChiTietTK INT PRIMARY KEY NOT NULL,
-	MaTK INT, 
-	HoTen NVARCHAR(200),
-	DiaChi NVARCHAR(MAX), 
-	SoDienThoai INT,
-	Avatar NVARCHAR(MAX),
-	FOREIGN KEY (MaTK) REFERENCES TaiKhoan(MaTK)
-)
-
-
 CREATE TABLE KhachHang
 (
 	MaKhachHang INT PRIMARY KEY NOT NULL,
 	TenKH NVARCHAR(100),
-	GioiTinh BIT,
+	GioiTinh NVARCHAR(20),
 	DiaChi NVARCHAR(250),
 	SDT INT,
 	Email NVARCHAR(250)
 )
 
+drop table HoaDon
+drop table ChiTietHoaDon
 
+select * From HoaDon
 CREATE TABLE HoaDon
 (
-	MaHoaDon INT PRIMARY KEY NOT NULL,
+	MaHoaDon  INT identity PRIMARY KEY NOT NULL,
 	MaVanChuyen INT,
 	MaKhachHang INT, 
 	TenKH NVARCHAR(100),
@@ -81,7 +72,7 @@ CREATE TABLE HoaDon
 
 CREATE TABLE ChiTietHoaDon
 (
-	MaChiTietHoaDon INT PRIMARY KEY NOT NULL,
+	MaChiTietHoaDon INT  identity PRIMARY KEY NOT NULL,
 	MaHoaDon INT,
 	MaSach INT,
 	MaGiamGia INT,
@@ -135,7 +126,7 @@ CREATE TABLE GiamGia
 	ThoiGianKetThuc DATETIME,
 	SoLuongMa INT,
 	SoTienGiam VARCHAR(50),
-	TrangThai BIT
+	TrangThai NVARCHAR(50)
 )
 
 /****** Mặt hàng bảng SanPham ******/
@@ -154,10 +145,11 @@ INSERT INTO SanPham(MaSach, TenSach ,TacGia , TenNXB, PhienBan, AnhSach ,TrangTh
 INSERT INTO SanPham(MaSach, TenSach ,TacGia , TenNXB, PhienBan, AnhSach ,TrangThai ,Gia) VALUES (8, N'Nhà Giả Kim', N'Paulo Coelho', N'Trẻ', N'Thường', N'https://salt.tikicdn.com/cache/w1200/ts/product/83/30/87/737846efdb9f28f0f51352cacf9225c5.jpg', 0, 199000)
 INSERT INTO SanPham(MaSach, TenSach ,TacGia , TenNXB, PhienBan, AnhSach ,TrangThai ,Gia) VALUES (9, N'Fantastic Beast and Where To Find Them', N'J.K.Rowling', N'Trẻ', N'Siêu đặc biệt',N'https://upload.wikimedia.org/wikipedia/vi/0/05/Fantastic_Beasts_And_Where_To_Find_Them.jpeg', 1, 999000)
 INSERT INTO SanPham(MaSach, TenSach ,TacGia , TenNXB, PhienBan, AnhSach ,TrangThai ,Gia) VALUES (10, N'Hoàng hôn nơi mắt người', N'FAELA', N'SELF', N'Đặc biệt',N'#' , 1, 499000)
+INSERT INTO SanPham(MaSach, TenSach ,TacGia , TenNXB, PhienBan, AnhSach ,TrangThai ,Gia) VALUES (11, N'Cô gái nơi xứ ngoài 2', N'NAGABE',N'Hồng Đức', N'Đặc biệt',N'https://product.hstatic.net/200000287623/product/co-gai-noi-xu-ngoai-1-banthuong__1__62ddca1969ae4609b1ecd8ec7095c218_master.jpg', 1, 59000)
 
-DELETE FROM SanPham WHERE MaSach = 9;
+DELETE FROM SanPham WHERE MaSach = 7;
 
-DELETE FROM ChiTietSanPham WHERE MaChiTietSP = 2;
+DELETE FROM ChiTietSanPham WHERE MaChiTietSP = 10;
 
 
 /****** Mặt hàng bảng NXB ******/
@@ -167,30 +159,31 @@ INSERT INTO NhaXuatBan(MaNXB, TenNXB ,DiaChi ,SoDienThoai) VALUES (2, N'Kim Đ�
 INSERT INTO NhaXuatBan(MaNXB, TenNXB ,DiaChi ,SoDienThoai) VALUES (3, N'Hồng Đức', N'Nguyễn Cửu Vân - Bình Thạnh - Hồ Chí Minh', 0971998312)
 INSERT INTO NhaXuatBan(MaNXB, TenNXB ,DiaChi ,SoDienThoai) VALUES (4, N'Trẻ', N'Lý Chính Thắng - Quận 3 - Hồ Chí Minh', 0939316289)
 
-SELECT*FROM NhaXuatBan
 
-DELETE FROM NhaXuatBan WHERE MaNXB = 3;
+SELECT*FROM GiamGia
+
+DELETE FROM GiamGia WHERE MaGiamGia = 5;
 
 
 /****** Mặt hàng bảng KhachHang ******/
 
 INSERT INTO KhachHang(MaKhachHang,TenKH,GioiTinh,DiaChi, SDT, Email) VALUES (1, N'Nguyễn Huyền', 1, N'Hưng Yên', 0913377629, 'nguyenhuyen21903@gmail.com')
-INSERT INTO KhachHang(MaKhachHang,TenKH,GioiTinh,DiaChi, SDT, Email) VALUES (2, N'Du Nhiên', 1, N'Hà Nội', 0941667862, 'feyrelfey@gmail.com')
+INSERT INTO KhachHang(MaKhachHang,TenKH,GioiTinh,DiaChi, SDT, Email) VALUES (3, N'Du Nhiên', N'Nữ', N'Hà Nội', 0941667862, 'feyrelfey@gmail.com')
 
 SELECT*FROM KhachHang
 
-create trigger Delete_NXB on NhaXuatBan
+create trigger Delete_GiamGia on GiamGia
 instead of delete
    as
 	   begin
-	   if(exists (select TenNXB from  NhaXuatBan where TenNXB in (select TenNXB from NhaXuatBan)))
+	   if(exists (select MaGiamGia from  GiamGia where MaGiamGia in (select MaGiamGia from ChiTietHoaDon)))
 	   BEGIN
-	   PRINT N'Nhà xuất bản còn mặt hàng. Không thể xóa.'
+	   PRINT N'Còn chi tiết hóa đơn, không thể xóa.'
 	   rollback tran
    end
 	   else
 	   begin
 	   print N'Đã xóa'
-	   delete from NhaXuatBan where TenNXB in (select TenNXB from NhaXuatBan)
+	   delete from GiamGia where MaGiamGia in (select MaGiamGia from ChiTietHoaDon)
 	end
 end

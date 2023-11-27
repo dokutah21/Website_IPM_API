@@ -16,6 +16,6 @@
 
         public string SoTienGiam { get; set; }
 
-        public bool TrangThai { get; set; }
+        public string TrangThai { get; set; }
     }
 }

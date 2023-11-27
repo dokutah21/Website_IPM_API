@@ -11,6 +11,10 @@ namespace BusinessLogicLayer
         {
             _res = res;
         }
+        public List<SanPhamModel> getAll_SanPham()
+        {
+            return _res.getAll_SanPham();
+        }
         public SanPhamModel GetDatabyID(string id)
         {
             return _res.GetDatabyID(id);
@@ -28,6 +32,11 @@ namespace BusinessLogicLayer
         public bool Delete(int id)
         {
             return _res.Delete(id);
+        }
+
+        public bool DeleteMultiple(string id)
+        {
+            return _res.DeleteMultiple(id);
         }
 
         public List<SanPhamModel> Search(int pageIndex, int pageSize, out long total, string TenSach, string TacGia)

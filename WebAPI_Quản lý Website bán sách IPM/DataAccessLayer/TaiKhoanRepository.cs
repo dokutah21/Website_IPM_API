@@ -9,6 +9,24 @@ namespace DataAccessLayer
         {
             _dbHelper = dbHelper;
         }
+        public List<TaiKhoanModel> getAll_TaiKhoan()
+        {
+
+            string msgError = "";
+            try
+            {
+                var result = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_getAll_TaiKhoan");
+                if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
+                {
+                    throw new Exception(Convert.ToString(result) + msgError);
+                }
+                return result.ConvertTo<TaiKhoanModel>().ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public TaiKhoanModel GetDatabyID(string MaTK)
         {
             string msgError = "";
@@ -36,8 +54,7 @@ namespace DataAccessLayer
                 "@MaLoai", model.MaLoai,
                 "@TenTaiKhoan", model.TenTaiKhoan,
                 "@MatKhau", model.MatKhau,
-                "@Email", model.Email,
-                "@list_json_ChiTietTaiKhoan", model.list_json_ChiTietTaiKhoan != null ? MessageConvert.SerializeObject(model.list_json_ChiTietTaiKhoan) : null);
+                "@Email", model.Email);
                 if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
                 {
                     throw new Exception(Convert.ToString(result) + msgError);
@@ -60,8 +77,7 @@ namespace DataAccessLayer
                 "@MaLoai", model.MaLoai,
                 "@TenTaiKhoan", model.TenTaiKhoan,
                 "@MatKhau", model.MatKhau,
-                "@Email", model.Email,
-                "@list_json_ChiTietTaiKhoan", model.list_json_ChiTietTaiKhoan != null ? MessageConvert.SerializeObject(model.list_json_ChiTietTaiKhoan) : null);
+                "@Email", model.Email);
                 if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
                 {
                     throw new Exception(Convert.ToString(result) + msgError);
@@ -80,6 +96,25 @@ namespace DataAccessLayer
             try
             {
                 var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_DeleteTaiKhoan",
+                "@MaTK", id);
+                if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
+                {
+                    throw new Exception(Convert.ToString(result) + msgError);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public bool DeleteMultiple(string id)
+        {
+            string msgError = "";
+            try
+            {
+                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "DeleteMultipleTaiKhoan",
                 "@MaTK", id);
                 if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
                 {

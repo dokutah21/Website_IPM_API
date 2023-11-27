@@ -6,7 +6,7 @@ create proc sp_CreateGiamGia
 @ThoiGianKetThuc DATETIME,
 @SoLuongMa INT,
 @SoTienGiam VARCHAR(50),
-@TrangThai BIT
+@TrangThai NVARCHAR(50)
 as
 insert into GiamGia(MaGiamGia, TenMaGiamGia, NoiDungMaGiamGia, ThoiGianBatDau, ThoiGianKetThuc,SoLuongMa, SoTienGiam, TrangThai)
 values (@MaGiamGia, @TenMaGiamGia, @NoiDungMaGiamGia, @ThoiGianBatDau, @ThoiGianKetThuc,@SoLuongMa, @SoTienGiam, @TrangThai)

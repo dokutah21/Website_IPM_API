@@ -59,15 +59,16 @@ $routeProvider .
 
 // chuyển trang
 
-function check_color(a)
-{  
-document.querySelectorAll('.check_color').forEach(x=>x.style.color='white')
-a.style.color='blue'
+// function check_color(a)
+// {  
+// document.querySelectorAll('.check_color').forEach(x=>x.style.color='white')
+// a.style.color='blue'
 
-}
+// }
 
-function resetForm(a)
-{
-  a.reset()
-}
+// function resetForm(a)
+// {
+//   a.reset()
+// }
+
 

@@ -15,6 +15,13 @@ namespace API.BanSach.Controllers
             _TaiKhoanBusiness = taiKhoanBusiness;
         }
 
+        [Route("GetAll_TaiKhoan")]
+        [HttpGet]
+        public List<TaiKhoanModel> getAll_TaiKhoan()
+        {
+            return _TaiKhoanBusiness.getAll_TaiKhoan();
+        }
+
         [Route("get-TaiKhoanByID")]
         [HttpGet]
         public TaiKhoanModel GetDatabyID(string id)
@@ -46,6 +53,17 @@ namespace API.BanSach.Controllers
             return id;
         }
 
+        [Route("deleteMultiple-TaiKhoan")]
+        [HttpPost]
+        public IActionResult DeleteTaiKhoan([FromBody] Dictionary<string, object> formData)
+        {
+            string ID = "";
+            if (formData.Keys.Contains("MaTK") && !string.IsNullOrEmpty(Convert.ToString(formData["MaTK"]))) { ID = Convert.ToString(formData["MaTK"]); }
+            _TaiKhoanBusiness.DeleteMultiple(ID);
+            return Ok();
+        }
+
+
         [Route("search-TaiKhoan")]
         [HttpPost]
         public IActionResult Search([FromBody] Dictionary<string, object> formData)
@@ -54,9 +72,7 @@ namespace API.BanSach.Controllers
             {
                 var page = int.Parse(formData["page"].ToString());
                 var pageSize = int.Parse(formData["pageSize"].ToString());
-                string TenTaiKhoan = "";
-                if (formData.Keys.Contains("TenTaiKhoan") && !string.IsNullOrEmpty(Convert.ToString(formData["TenTaiKhoan"]))) { TenTaiKhoan = Convert.ToString(formData["TenTaiKhoan"]); }
-                long total = 0;
+                string TenTaiKhoan = formData.ContainsKey("tenTaiKhoan") ? Convert.ToString(formData["tenTaiKhoan"].ToString()) : ""; long total = 0;
                 var data = _TaiKhoanBusiness.Search(page, pageSize, out total, TenTaiKhoan);
                 return Ok(
                     new

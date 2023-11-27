@@ -15,6 +15,13 @@ namespace API.BanSach.Controllers
             _VanChuyenBusiness = vanChuyenBusiness;
         }
 
+        [Route("GetAll_VanChuyen")]
+        [HttpGet]
+        public List<VanChuyenModel> getAll_VanChuyen()
+        {
+            return _VanChuyenBusiness.getAll_VanChuyen();
+        }
+
         [Route("get-VanChuyenByID")]
         [HttpGet]
         public VanChuyenModel GetDatabyID(string id)
@@ -46,6 +53,16 @@ namespace API.BanSach.Controllers
             return id;
         }
 
+        [Route("deleteMultiple-VanChuyen")]
+        [HttpPost]
+        public IActionResult DeleteSanPham([FromBody] Dictionary<string, object> formData)
+        {
+            string ID = "";
+            if (formData.Keys.Contains("MaVanChuyen") && !string.IsNullOrEmpty(Convert.ToString(formData["MaVanChuyen"]))) { ID = Convert.ToString(formData["MaVanChuyen"]); }
+            _VanChuyenBusiness.DeleteMultiple(ID);
+            return Ok();
+        }
+
         [Route("search-VanChuyen")]
         [HttpPost]
         public IActionResult Search([FromBody] Dictionary<string, object> formData)
@@ -54,10 +71,8 @@ namespace API.BanSach.Controllers
             {
                 var page = int.Parse(formData["page"].ToString());
                 var pageSize = int.Parse(formData["pageSize"].ToString());
-                string TenKH = "";
-                if (formData.Keys.Contains("TenKH") && !string.IsNullOrEmpty(Convert.ToString(formData["TenKH"]))) { TenKH = Convert.ToString(formData["TenKH"]); }
-                string DiaChi = "";
-                if (formData.Keys.Contains("DiaChi") && !string.IsNullOrEmpty(Convert.ToString(formData["DiaChi"]))) { DiaChi = Convert.ToString(formData["DiaChi"]); }
+                string TenKH = formData.ContainsKey("tenKH") ? Convert.ToString(formData["tenKH"].ToString()) : "";
+                string DiaChi = formData.ContainsKey("diaChi") ? Convert.ToString(formData["diaChi"].ToString()) : "";
                 long total = 0;
                 var data = _VanChuyenBusiness.Search(page, pageSize, out total, TenKH, DiaChi);
                 return Ok(

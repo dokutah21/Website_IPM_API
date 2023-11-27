@@ -22,6 +22,13 @@ namespace API.BanSach.Controllers
             return _GiamGiaBusiness.GetDatabyID(id);
         }
 
+        [Route("GetAll_GiamGia")]
+        [HttpGet]
+        public List<GiamGiaModel> getAll_GiamGia()
+        {
+            return _GiamGiaBusiness.getAll_GiamGia();
+        }
+
         [Route("create-GiamGia")]
         [HttpPost]
         public GiamGiaModel CreateItem([FromBody] GiamGiaModel model)
@@ -46,6 +53,16 @@ namespace API.BanSach.Controllers
             return id;
         }
 
+        [Route("deleteMultiple-GiamGia")]
+        [HttpPost]
+        public IActionResult DeleteGiamGia([FromBody] Dictionary<string, object> formData)
+        {
+            string ID = "";
+            if (formData.Keys.Contains("MaGiamGia") && !string.IsNullOrEmpty(Convert.ToString(formData["MaGiamGia"]))) { ID = Convert.ToString(formData["MaGiamGia"]); }
+            _GiamGiaBusiness.DeleteMultiple(ID);
+            return Ok();
+        }
+
         [Route("search-GiamGia")]
         [HttpPost]
         public IActionResult Search([FromBody] Dictionary<string, object> formData)
@@ -54,9 +71,8 @@ namespace API.BanSach.Controllers
             {
                 var page = int.Parse(formData["page"].ToString());
                 var pageSize = int.Parse(formData["pageSize"].ToString());
-                string TenMaGiamGia = "";
-                if (formData.Keys.Contains("TenMaGiamGia") && !string.IsNullOrEmpty(Convert.ToString(formData["TenMaGiamGia"]))) { TenMaGiamGia = Convert.ToString(formData["TenMaGiamGia"]); }
-                int SoTienGiam = formData.ContainsKey("SoTienGiam") && int.TryParse(formData["SoTienGiam"].ToString(), out var soTienGiamValue) ? soTienGiamValue : 0;
+                string TenMaGiamGia = formData.ContainsKey("tenMaGiamGia") ? Convert.ToString(formData["tenMaGiamGia"].ToString()) : "";
+                int SoTienGiam = formData.ContainsKey("soTienGiam") && int.TryParse(formData["soTienGiam"].ToString(), out var soTienGiamValue) ? soTienGiamValue : 0;
                 long total = 0;
                 var data = _GiamGiaBusiness.Search(page, pageSize, out total, TenMaGiamGia, SoTienGiam);
                 return Ok(

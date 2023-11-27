@@ -9,6 +9,25 @@ namespace DataAccessLayer
         {
             _dbHelper = dbHelper;
         }
+        public List<LoaiTaiKhoanModel> getAll_LTK()
+        {
+
+            string msgError = "";
+            try
+            {
+                var result = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_getAll_LTK");
+                if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
+                {
+                    throw new Exception(Convert.ToString(result) + msgError);
+                }
+                return result.ConvertTo<LoaiTaiKhoanModel>().ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public LoaiTaiKhoanModel GetDatabyID(string MaLoai)
         {
             string msgError = "";
@@ -87,6 +106,25 @@ namespace DataAccessLayer
             }
         }
 
+        public bool DeleteMultiple(string id)
+        {
+            string msgError = "";
+            try
+            {
+                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "DeleteMultipleLTK",
+                "@MaLoai", id);
+                if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
+                {
+                    throw new Exception(Convert.ToString(result) + msgError);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public List<LoaiTaiKhoanModel> Search(int pageIndex, int pageSize, out long total, string PhanQuyen, string TenChucDanh)
         {
             string msgError = "";
@@ -107,25 +145,6 @@ namespace DataAccessLayer
             {
                 throw ex;
             }
-        }
-        public List<LoaiTaiKhoanModel> getAll_LTK()
-        {
-
-            string msgError = "";
-            try
-            {
-                var result = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_getAll_LTK");
-                if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
-                {
-                    throw new Exception(Convert.ToString(result) + msgError);
-                }
-              return result.ConvertTo<LoaiTaiKhoanModel>().ToList();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
         }
     } 
 }

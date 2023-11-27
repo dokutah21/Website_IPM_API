@@ -9,6 +9,8 @@ namespace DataAccessLayer
 {
     public partial interface ILoaiTaiKhoanRepository
     {
+        List<LoaiTaiKhoanModel> getAll_LTK();
+
         LoaiTaiKhoanModel GetDatabyID(string id);
 
         bool Create(LoaiTaiKhoanModel model);
@@ -17,7 +19,8 @@ namespace DataAccessLayer
 
         bool Delete(int id);
 
+        bool DeleteMultiple(string id);
+
         public List<LoaiTaiKhoanModel> Search(int pageIndex, int pageSize, out long total, string PhanQuyen, string TenChucDanh);
-        List<LoaiTaiKhoanModel> getAll_LTK();
     }
 }

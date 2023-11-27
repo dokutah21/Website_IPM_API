@@ -9,6 +9,7 @@ namespace DataAccessLayer
 {
     public partial interface ISanPhamRepository
     {
+        List<SanPhamModel> getAll_SanPham();
         SanPhamModel GetDatabyID(string id);
 
         bool Create(SanPhamModel model);
@@ -16,6 +17,8 @@ namespace DataAccessLayer
         bool Update(SanPhamModel model); 
         
         bool Delete(int id);
+
+        bool DeleteMultiple(string id);
 
         public List<SanPhamModel> Search(int pageIndex, int pageSize, out long total, string TenSach, string TacGia);
     }

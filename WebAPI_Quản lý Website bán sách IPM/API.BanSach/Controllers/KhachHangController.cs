@@ -15,6 +15,13 @@ namespace API.BanSach.Controllers
             _KhachHangBusiness = khachHangBusiness;
         }
 
+        [Route("GetAll_KhachHang")]
+        [HttpGet]
+        public List<KhachHangModel> getAll_KhachHang()
+        {
+            return _KhachHangBusiness.getAll_KhachHang();
+        }
+
         [Route("get-KhachHangByID")]
         [HttpGet]
         public KhachHangModel GetDatabyID(string id)
@@ -46,6 +53,16 @@ namespace API.BanSach.Controllers
             return id;
         }
 
+        [Route("deleteMultiple-KhachHang")]
+        [HttpPost]
+        public IActionResult DeleteKhachHang([FromBody] Dictionary<string, object> formData)
+        {
+            string ID = "";
+            if (formData.Keys.Contains("MaKhachHang") && !string.IsNullOrEmpty(Convert.ToString(formData["MaKhachHang"]))) { ID = Convert.ToString(formData["MaKhachHang"]); }
+            _KhachHangBusiness.DeleteMultiple(ID);
+            return Ok();
+        }
+
         [Route("search-KhachHang")]
         [HttpPost]
         public IActionResult Search([FromBody] Dictionary<string, object> formData)
@@ -54,10 +71,8 @@ namespace API.BanSach.Controllers
             {
                 var page = int.Parse(formData["page"].ToString());
                 var pageSize = int.Parse(formData["pageSize"].ToString());
-                string TenKH = "";
-                if (formData.Keys.Contains("TenKH") && !string.IsNullOrEmpty(Convert.ToString(formData["TenKH"]))) { TenKH = Convert.ToString(formData["TenKH"]); }
-                string DiaChi = "";
-                if (formData.Keys.Contains("DiaChi") && !string.IsNullOrEmpty(Convert.ToString(formData["DiaChi"]))) { DiaChi = Convert.ToString(formData["DiaChi"]); }
+                string TenKH = formData.ContainsKey("tenKH") ? Convert.ToString(formData["tenKH"].ToString()) : "";
+                string DiaChi = formData.ContainsKey("diaChi") ? Convert.ToString(formData["diaChi"].ToString()) : "";
                 long total = 0;
                 var data = _KhachHangBusiness.Search(page, pageSize, out total, DiaChi, TenKH);
                 return Ok(

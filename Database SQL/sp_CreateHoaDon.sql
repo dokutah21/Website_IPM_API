@@ -1,6 +1,8 @@
-create proc sp_CreateHoaDon
+select * From HoaDon
+select * from ChiTietHoaDon
+alter proc sp_CreateHoaDon
 (
-@MaHoaDon INT,
+
 @MaVanChuyen INT,
 @MaKhachHang INT, 
 @TenKH NVARCHAR(100),
@@ -13,8 +15,9 @@ create proc sp_CreateHoaDon
 )
 AS
     BEGIN
+	declare @mahd int;
         INSERT INTO HoaDon
-                (MaHoaDon, 
+                ( 
                  MaVanChuyen, 
                  MaKhachHang,
 				 TenKH,
@@ -25,7 +28,7 @@ AS
 				 TrangThai
                 )
                 VALUES
-                (@MaHoaDon, 
+                ( 
                  @MaVanChuyen, 
                  @MaKhachHang,
 				 @TenKH,
@@ -36,19 +39,19 @@ AS
 				 @TrangThai
                 );
 
-				SET @MaHoaDon = (SELECT SCOPE_IDENTITY());
+				SET @mahd = (SELECT SCOPE_IDENTITY());
                 IF(@list_json_ChiTietHoaDon IS NOT NULL)
                     BEGIN
                         INSERT INTO ChiTietHoaDon
-						 (MaChiTietHoaDon,
+						 (
 						  MaHoaDon,
 						  MaSach,
 						  MaGiamGia,
 						  SoLuong,
 						  TongGia
                         )
-                    SELECT  JSON_VALUE(cthd.value, '$.maChiTietHoaDon'),
-							@MaHoaDon, 
+                    SELECT  
+							@mahd, 
                             JSON_VALUE(cthd.value, '$.maSach'), 
 							JSON_VALUE(cthd.value, '$.maGiamGia'), 
                             JSON_VALUE(cthd.value, '$.soLuong'),

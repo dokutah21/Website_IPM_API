@@ -11,6 +11,11 @@ namespace BusinessLogicLayer
         {
             _res = res;
         }
+
+        public List<GiamGiaModel> getAll_GiamGia()
+        {
+            return _res.getAll_GiamGia();
+        }
         public GiamGiaModel GetDatabyID(string id)
         {
             return _res.GetDatabyID(id);
@@ -28,6 +33,11 @@ namespace BusinessLogicLayer
         public bool Delete(int id)
         {
             return _res.Delete(id);
+        }
+
+        public bool DeleteMultiple(string id)
+        {
+            return _res.DeleteMultiple(id);
         }
 
         public List<GiamGiaModel> Search(int pageIndex, int pageSize, out long total, string TenMaGiamGia, int SoTienGiam)

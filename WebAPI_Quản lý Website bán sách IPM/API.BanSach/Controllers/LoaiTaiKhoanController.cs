@@ -22,6 +22,13 @@ namespace API.BanSach.Controllers
             return _LoaiTaiKhoanBusiness.GetDatabyID(id);
         }
 
+        [Route("GetAll_LTK")]
+        [HttpGet]
+        public List<LoaiTaiKhoanModel> getAll_LTK()
+        {
+            return _LoaiTaiKhoanBusiness.getAll_LTK();
+        }
+
         [Route("create-LoaiTaiKhoan")]
         [HttpPost]
         public LoaiTaiKhoanModel CreateItem([FromBody] LoaiTaiKhoanModel model)
@@ -38,6 +45,7 @@ namespace API.BanSach.Controllers
             return model;
         }
 
+
         [Route("delete-LoaiTaiKhoan")]
         [HttpDelete]
         public IActionResult DeleteItem(int id)
@@ -50,12 +58,16 @@ namespace API.BanSach.Controllers
             return BadRequest(false);
         }
 
-        [Route("GetAll_LTK")]
-        [HttpGet]
-        public List<LoaiTaiKhoanModel> getAll_LTK()
+        [Route("deleteMultiple-LoaiTaiKhoan")]
+        [HttpPost]
+        public IActionResult DeleteLoaiTaiKhoan([FromBody] Dictionary<string, object> formData)
         {
-            return _LoaiTaiKhoanBusiness.getAll_LTK();
+            string ID = "";
+            if (formData.Keys.Contains("MaLoai") && !string.IsNullOrEmpty(Convert.ToString(formData["MaLoai"]))) { ID = Convert.ToString(formData["MaLoai"]); }
+            _LoaiTaiKhoanBusiness.DeleteMultiple(ID);
+            return Ok();
         }
+
 
         [Route("search-LoaiTaiKhoan")]
         [HttpPost]
@@ -65,10 +77,8 @@ namespace API.BanSach.Controllers
             {
                 var page = int.Parse(formData["page"].ToString());
                 var pageSize = int.Parse(formData["pageSize"].ToString());
-                string PhanQuyen = "";
-                if (formData.Keys.Contains("PhanQuyen") && !string.IsNullOrEmpty(Convert.ToString(formData["PhanQuyen"]))) { PhanQuyen = Convert.ToString(formData["PhanQuyen"]); }
-                string TenChucDanh = "";
-                if (formData.Keys.Contains("TenChucDanh") && !string.IsNullOrEmpty(Convert.ToString(formData["TenChucDanh"]))) { PhanQuyen = Convert.ToString(formData["TenChucDanh"]); }
+                string PhanQuyen = formData.ContainsKey("phanQuyen") ? Convert.ToString(formData["phanQuyen"].ToString()) : "";
+                string TenChucDanh = formData.ContainsKey("tenChucDanh") ? Convert.ToString(formData["tenChucDanh"].ToString()) : "";
                 long total = 0;
                 var data = _LoaiTaiKhoanBusiness.Search(page, pageSize, out total, PhanQuyen, TenChucDanh);
                 return Ok(

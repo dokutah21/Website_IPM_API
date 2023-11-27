@@ -11,9 +11,16 @@
 }
 .table_content{
     width: 100%;
-    height: 74%;
+    height: 100%;
     overflow: auto;
     margin-top: 0;
+}
+
+.sanpham-table
+{
+    overflow: auto;
+    max-height: 500px; /* Điều chỉnh giá trị theo nhu cầu */
+    width: 1061px;
 }
 
 body{

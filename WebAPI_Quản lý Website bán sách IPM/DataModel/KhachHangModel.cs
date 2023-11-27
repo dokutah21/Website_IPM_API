@@ -6,7 +6,7 @@
 
         public string TenKH { get; set; }
 
-        public bool GioiTinh { get; set; }
+        public string GioiTinh { get; set; }
 
         public string DiaChi{ get; set; }
 

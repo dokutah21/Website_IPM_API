@@ -9,6 +9,7 @@ namespace DataAccessLayer
 {
     public partial interface INhaXuatBanRepository
     {
+        List<NhaXuatBanModel> getAll_NXB();
         NhaXuatBanModel GetDatabyID(string id);
 
         bool Create(NhaXuatBanModel model);
@@ -16,6 +17,8 @@ namespace DataAccessLayer
         bool Update(NhaXuatBanModel model);
 
         bool Delete(int id);
+
+        bool DeleteMultiple(string id);
 
         public List<NhaXuatBanModel> Search(int pageIndex, int pageSize, out long total, string TenNXB);
     }

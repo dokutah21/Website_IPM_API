@@ -11,6 +11,11 @@ namespace BusinessLogicLayer
         {
             _res = res;
         }
+
+        public List<VanChuyenModel> getAll_VanChuyen()
+        {
+            return _res.getAll_VanChuyen();
+        }
         public VanChuyenModel GetDatabyID(string id)
         {
             return _res.GetDatabyID(id);
@@ -28,6 +33,11 @@ namespace BusinessLogicLayer
         public bool Delete(int id)
         {
             return _res.Delete(id);
+        }
+
+        public bool DeleteMultiple(string id)
+        {
+            return _res.DeleteMultiple(id);
         }
 
         public List<VanChuyenModel> Search(int pageIndex, int pageSize, out long total, string TenKH, string DiaChi)

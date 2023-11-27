@@ -19,7 +19,7 @@
         float: right;
         width: 80.999%;
         height: 50%;
-        background-color: #ECF0F5;
+        background-color: #FFFFFF;
     }
     .header_top{
         height: 6%;
@@ -40,11 +40,15 @@
         font-weight: 600;
     }
 
+    .view-site
+    {
+        height: 550px;
+    }
+
     .tieude{
         width: 100%;
         height: 45px;
         padding: 11px 15px;
-        background-color: #1A2226;
         color: #b0d2ee;
         font-size: 18.5px;
         text-align: center;
@@ -196,7 +200,7 @@
         width: 100%;
         height: 50px;
         background-color:#01a14b;
-        border-bottom: 1px solid #bab9b9;
+        border-bottom: 1px solid;
         display: flex;
         justify-content: space-between;
         margin-bottom: 10px;

@@ -11,6 +11,10 @@ namespace BusinessLogicLayer
         {
             _res = res;
         }
+        public List<LoaiTaiKhoanModel> getAll_LTK()
+        {
+            return _res.getAll_LTK();
+        }
         public LoaiTaiKhoanModel GetDatabyID(string id)
         {
             return _res.GetDatabyID(id);
@@ -30,13 +34,14 @@ namespace BusinessLogicLayer
             return _res.Delete(id);
         }
 
+        public bool DeleteMultiple(string id)
+        {
+            return _res.DeleteMultiple(id);
+        }
+
         public List<LoaiTaiKhoanModel> Search(int pageIndex, int pageSize, out long total, string PhanQuyen, string TenChucDanh)
         {
             return _res.Search(pageIndex, pageSize, out total, PhanQuyen, TenChucDanh);
-        }
-        public List<LoaiTaiKhoanModel> getAll_LTK()
-        {
-            return _res.getAll_LTK();
-        }    
+        }   
     }
 }
