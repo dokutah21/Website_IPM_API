@@ -12,5 +12,7 @@ namespace BusinessLogicLayer
         SanPhamModel GetDatabyID(string id);
 
         public List<SanPhamModel> Search(int pageIndex, int pageSize, out long total, string TenSach, string TacGia);
+
+        public List<SanPhamModel> Search(int pageIndex, int pageSize, out long total);
     }
 }

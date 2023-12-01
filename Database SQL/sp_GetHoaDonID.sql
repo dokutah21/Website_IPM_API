@@ -11,3 +11,4 @@ AS
         FROM HoaDon AS hd
         WHERE  hd.MaHoaDon = @MaHoaDon;
     END;
+	exec sp_GetHoaDonID 0

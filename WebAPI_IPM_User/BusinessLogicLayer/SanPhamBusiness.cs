@@ -20,5 +20,10 @@ namespace BusinessLogicLayer
         {
             return _res.Search(pageIndex, pageSize, out total, TenSach, TacGia);
         }
+
+        public List<SanPhamModel> Search(int pageIndex, int pageSize, out long total)
+        {
+            return _res.Search(pageIndex, pageSize, out total);
+        }
     }
 }

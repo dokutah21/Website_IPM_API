@@ -15,7 +15,7 @@
     <link rel="canonical" href="https://theme.hstatic.net/200000287623/1000948667/14/favicon.png?v=367">
 </head>
 
-<body>
+<body ng-app="UserMuaHang"  ng-controller="UserSanPhamCtrl">
 <header>
     <div class="header-top">
         <div class="container">
@@ -50,7 +50,7 @@
                     <div id="sec-menu">
                         <ul style="margin-right: -33px">
                             <li><a href="#">ĐĂNG KÝ</a></li>
-                            <li><a href="#">ĐĂNG NHẬP</a></li>
+                            <li><a href="http://127.0.0.1:5502/%C4%90%C4%83ng%20nh%E1%BA%ADp/SignIn.html">ĐĂNG NHẬP</a></li>
                             <li><a href="#">GIỎ HÀNG</a></li>
                             <li><a href="#">THANH TOÁN</a></li>
                         </ul>
@@ -78,6 +78,7 @@
             </td>
 
             <td class="shopping-cart">
+                <div class="totalOrder"></div>
                 <a><span onclick="openNav()"><i class="fas fa-shopping-cart"></i></span></a>
                 <a><i class="far fa-bookmark"></i></a>
                 <a><i class="far fa-heart"></i></a>
@@ -97,24 +98,20 @@
     </div>
 
     <div class="cart-items-container">
-        <div class="cart-item">
-            <span><i class="far fa-times-circle"></i></span>
-            <img src="images/DeCaf.jpg" alt="DeCaf">
-            <div class="content">
-                <h3><b>Café DeCaf by Nos®</b></h3>
-                <div class="qty">Số lượng: 02</div>
-                <div class="price">1.799.000₫</div>
+       <div class="listcart">
+
+       </div>
+
+        <div class="tol-pri">
+            <div class="total-price">
+                <span><b>Tổng:</b></span>
+                <span class="t-price"></span>
             </div>
-        </div>
-
-        <div class="total-price">
-            <span><b>Tổng:</b></span>
-            <span class="t-price">2.797.000₫</span>
-        </div>
-
-        <div class="total-prices">
-            <span><b>Chiết khấu:</b></span>
-            <span class="t-price">2.500.000₫</span>
+    
+            <div class="total-prices">
+                <span><b>Chiết khấu:</b></span>
+                <span class="t-price"></span>
+            </div>    
         </div>
 
         <a href="#" class="button-total"><i class="fas fa-shopping-cart"></i></a>
@@ -147,15 +144,16 @@
 
                 <div class="item-product-sell">
                     <div class="item-product-sell-row">
+                       
                         <div class="col-sm-3">
                             <div class="hover-image">
-                                <img class="psr" src="https://product.hstatic.net/200000287623/product/co-gai-noi-xu-ngoai-1-banthuong__1__62ddca1969ae4609b1ecd8ec7095c218_master.jpg" alt="Ethiopia">
+                                <img class="psr" src="https://product.hstatic.net/200000287623/product/co-gai-noi-xu-ngoai-1-banthuong__1__62ddca1969ae4609b1ecd8ec7095c218_master.jpg" alt="Nicaragua">
                                 <img class="top-psr" src="https://product.hstatic.net/200000287623/product/co_gai_noi_xu_ngoai_1_-_bia_1_b6a19217868d406d9f61b16112aa4b52_master.jpg">
                             </div>
 
                             <div class="hover-content">
                                 <div class="cnt-title"><a href="#">Manga</a></div>
-                                <div class="cnt-subtitle"><a href="#">Cô gái nơi xứ ngoài 1</a></div>
+                                <div class="cnt-subtitle"><a href="#">Cô gái nơi xứ ngoài - 1</a></div>
                             </div>
 
                             <div class="see-clear">
@@ -170,7 +168,7 @@
                                     <div class="modal-cnt">
                                         <div class="cnt-left">
                                             <div class="cnt-left-container">
-                                                <div class="mySlides">
+                                                <div class="mySlide">
                                                     <img src="https://product.hstatic.net/200000287623/product/co_gai_noi_xu_ngoai_1_-_bia_1_b6a19217868d406d9f61b16112aa4b52_master.jpg">
                                                 </div>
                                             </div>
@@ -179,12 +177,13 @@
 
                                         <div class="cnt-right">
                                             <h3><b>Cô Gái Nơi Xứ Ngoài - 1</b></h3>
-                                            <div class="prices">49,300₫
-                                                <span>58,000₫</span>
+                                            <div class="prices">
+                                                <span class="discount">49,300₫</span>
+                                                <span class="normal-price">58,000₫</span>
                                             </div>
 
                                             <div class="cnt-right-product">
-                                                <p>Shiva là một cô bé loài người nhưng lại sống ở Xứ ngoài cùng một Kẻ Xứ ngoài mà cô bé luôn gọi là thầy. Chẳng rõ vì sao Shiva lại ở đó, chỉ biết cô bé vẫn ngày đêm ngóng đợi bác mình đến đón cô bé trở về Xứ trong.</p>
+                                                <p>Một Kẻ Xứ ngoài bí ẩn đã chạm vào Shiva. Hành động ấy sẽ khiến Shiva dính lời nguyền và biến thành Kẻ Xứ ngoài, làm cô bé yếu đuối vô cùng hoảng sợ, còn thầy thì cực kì hoang mang...</p>
 
                                                 <p class="loai">2 BIẾN THỂ</p>
                                                 <select id="roast" name="biến thể">
@@ -192,8 +191,8 @@
                                                     <option value="medium">Bản đặc biệt</option>
                                                 </select>
 
-                                                <input class="met" type="number" value="5" min="1">
-                                                <button class="add-product">Thêm vào giỏ hàng</button>
+                                                <input class="met" type="number" value="1" min="1">
+                                                <button class="add-product" data-id="1">Thêm vào giỏ hàng</button>
 
                                                 <div class="social">
                                                     <span class="loais">SHARE OUR PRODUCT!</span>
@@ -210,72 +209,6 @@
                             </div>
                         </div>
                         <script src="./Modal/modal.js"></script>
-
-
-
-                        <div class="col-sm-3">
-                            <div class="hover-image">
-                                <img class="psr" src="https://product.hstatic.net/200000287623/product/co-gai-noi-xu-ngoai-2-banthuong_1feb602961634793bc131b7843ca325e_master.jpg" alt="Nicaragua">
-                                <img class="top-psr" src="https://product.hstatic.net/200000287623/product/co_gai_noi_xu_ngoai_2_-_bia_1_1e6ba7acb5874c178f41fa10f0cb012a_master.jpg">
-                            </div>
-
-                            <div class="hover-content">
-                                <div class="cnt-title"><a href="#">Manga</a></div>
-                                <div class="cnt-subtitle"><a href="#">Cô gái nơi xứ ngoài - 2</a></div>
-                            </div>
-
-                            <div class="see-clear">
-                                <div id="eyesa1"><a href="#myModal1"><i class="fas fa-eye"></i></a></div> |
-                                <div class="clearly"><a href="#">Xem chi tiết &ensp; <i class="fas fa-angle-right"></i></a></div>
-                            </div>
-
-                            <div id="myModal1" class="modal">
-                                <!-- Modal content -->
-                                <div class="modal-content" style="width: 1050px">
-                                    <span class="close1">&times;</span>
-                                    <div class="modal-cnt">
-                                        <div class="cnt-left">
-                                            <div class="cnt-left-container">
-                                                <div class="mySlide">
-                                                    <img src="https://product.hstatic.net/200000287623/product/co_gai_noi_xu_ngoai_2_-_bia_1_1e6ba7acb5874c178f41fa10f0cb012a_master.jpg">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <script src="./ContentSlide/content-slide1.js"></script>
-
-                                        <div class="cnt-right">
-                                            <h3><b>Cô Gái Nơi Xứ Ngoài - 2</b></h3>
-                                            <div class="prices">49,300₫
-                                                <span>58,000₫</span>
-                                            </div>
-
-                                            <div class="cnt-right-product">
-                                                <p>Một Kẻ Xứ ngoài bí ẩn đã chạm vào Shiva. Hành động ấy sẽ khiến Shiva dính lời nguyền và biến thành Kẻ Xứ ngoài, làm cô bé yếu đuối vô cùng hoảng sợ, còn thầy thì cực kì hoang mang...</p>
-
-                                                <p class="loai">2 BIẾN THỂ</p>
-                                                <select id="roast" name="biến thể">
-                                                    <option value="low">Bản thường</option>
-                                                    <option value="medium">Bản đặc biệt</option>
-                                                </select>
-
-                                                <input class="met" type="number" value="5" min="1">
-                                                <button class="add-product">Thêm vào giỏ hàng</button>
-
-                                                <div class="social">
-                                                    <span class="loais">SHARE OUR PRODUCT!</span>
-
-                                                    <a href="#" class="fab fa-facebook"></a>
-                                                    <a href="#" class="fab fa-twitter"></a>
-                                                    <a href="#" class="fab fa-google"></a>
-                                                    <a href="#" class="fab fa-instagram"></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <script src="./Modal/modal1.js"></script>
 
 
                         <div class="col-sm-3">
@@ -310,7 +243,10 @@
 
                                         <div class="cnt-right" style="margin-top: -10px">
                                             <h3><b>Yuzu Camp Vol 1</b></h3>
-                                            <div class="prices">30.000₫</div>
+                                            <div class="prices">
+                                                <span class="discount"> 30.000₫</span> 
+                                                <span class="normal-price"></span>
+                                            </div>
 
                                             <div class="cnt-right-product">
                                                 <p>Rin dừng chân tại một sườn đồi kế bên núi Phú Sĩ. Ở khu tiếp tân, Rin thấy một cô bạn ngủ lăn ngủ lóc trên ghế băng. Đó là Nadeshiko, một học sinh mới chuyển đến vùng này. Vì quá thích thú khi biết nơi ở mới gần núi Phú Sĩ nên Nadeshiko đã nhào đi ngắm cảnh, trong lúc vội vã, cô đã cầm nhầm bộ bài Tây thay cho điện thoại di động…</p>
@@ -320,8 +256,8 @@
                                                     <option value="low">Bản thường</option>
                                                 </select>
 
-                                                <input class="met" type="number" value="5" min="1">
-                                                <button class="add-product">Thêm vào giỏ hàng</button>
+                                                <input class="met" type="number" value="1" min="1">
+                                                <button class="add-product" data-id="7">Thêm vào giỏ hàng</button>
 
                                                 <div class="social">
                                                     <span class="loais">SHARE OUR PRODUCT!</span>
@@ -371,8 +307,9 @@
 
                                         <div class="cnt-right">
                                             <h3><b>Sherlock BOXSET Manga bộ 3 tập</b></h3>
-                                            <div class="prices">140,250₫ 
-                                                <span>165,000₫</span>
+                                            <div class="prices">
+                                                <span class="discount">140,250₫</span> 
+                                                <span class="normal-price">165,000₫</span>
                                             </div>
 
                                             <div class="cnt-right-product">
@@ -380,8 +317,8 @@
 
                                                 <p class="loai">SỐ LƯỢNG</p>
 
-                                                <input class="met" type="number" value="5" min="1">
-                                                <button class="add-product">Thêm vào giỏ hàng</button>
+                                                <input class="met" type="number" value="1" min="1">
+                                                <button class="add-product" data-id="12">Thêm vào giỏ hàng</button>
 
                                                 <div class="social">
                                                     <span class="loais">SHARE OUR PRODUCT!</span>
@@ -433,8 +370,9 @@
 
                                         <div class="cnt-right">
                                             <h3><b>Hồ Tuyệt Mệnh</b></h3>
-                                            <div class="prices">78,540₫  
-                                                <span>102,000₫</span>
+                                            <div class="prices">
+                                                <span class="discount">78,540₫  </span>
+                                                <span class="normal-price">102,000₫</span>
                                             </div>
 
                                             <div class="cnt-right-product">
@@ -443,7 +381,7 @@
                                                 <p class="loai">SỐ LƯỢNG</p>
 
                                                 <input class="met" type="number" value="5" min="1">
-                                                <button class="add-product">Thêm vào giỏ hàng</button>
+                                                <button class="add-product" data-id="13">Thêm vào giỏ hàng</button>
 
                                                 <div class="social">
                                                     <span class="loais">SHARE OUR PRODUCT!</span>
@@ -494,8 +432,9 @@
 
                                         <div class="cnt-right">
                                             <h3><b>Trăm đóa hoa kí ức</b></h3>
-                                            <div class="prices">88,000₫
-                                                <span>110,000₫</span>
+                                            <div class="prices">
+                                                <span class="discount">88,000₫</span>
+                                                <span class="norma-price">110,000₫</span>
                                             </div>
 
                                             <div class="cnt-right-product">
@@ -504,7 +443,7 @@
                                                 <p class="loai">SỐ LƯỢNG</p>
 
                                                 <input class="met" type="number" value="5" min="1">
-                                                <button class="add-product">Thêm vào giỏ hàng</button>
+                                                <button class="add-product" data-id="14">Thêm vào giỏ hàng</button>
 
                                                 <div class="social">
                                                     <span class="loais">SHARE OUR PRODUCT!</span>
@@ -552,7 +491,12 @@
 
                                         <div class="cnt-right" style="margin-top: -10px;">
                                             <h3><b>Ngàn cánh hạc</b></h3>
-                                            <div class="prices">78,400₫ </div>
+                                            <div class="prices">
+                                                
+                                                <span class="discount">78,400₫</span>
+                                                <span class="normal-price"></span>
+
+                                            </div>
 
                                             <div class="cnt-right-product">
                                                 <p>Giới thiệu sách: Bản Ngàn cánh hạc tiếng Việt lần này bổ sung hai chương tác giả chỉ mới in trên tạp chí, chưa bao giờ xuất bản thành sách. … Là hậu duệ một gia tộc trà đạo, thay vì duy trì truyền thống, Kikuji lại tìm cách trốn tránh nó, coi nhẹ nó, thậm chí bán luôn cả trà thất của gia đình.</p>
@@ -563,7 +507,7 @@
                                                 </select>
 
                                                 <input class="met" type="number" value="5" min="1">
-                                                <button class="add-product">Thêm vào giỏ hàng</button>
+                                                <button class="add-product" data-id="15">Thêm vào giỏ hàng</button>
 
                                                 <div class="social">
                                                     <span class="loais">SHARE OUR PRODUCT!</span>
@@ -581,6 +525,74 @@
                             <script src="./Modal/modal6.js"></script>
                         </div>
 
+
+                        <div class="col-sm-3">
+                            <div class="hover-image">
+                                <img class="psr" src="https://product.hstatic.net/200000287623/product/co-gai-noi-xu-ngoai-2-banthuong_1feb602961634793bc131b7843ca325e_master.jpg" alt="Nicaragua">
+                                <img class="top-psr" src="https://product.hstatic.net/200000287623/product/co_gai_noi_xu_ngoai_2_-_bia_1_1e6ba7acb5874c178f41fa10f0cb012a_master.jpg">
+                            </div>
+
+                            <div class="hover-content">
+                                <div class="cnt-title"><a href="#">Manga</a></div>
+                                <div class="cnt-subtitle"><a href="#">Cô gái nơi xứ ngoài - 2</a></div>
+                            </div>
+
+                            <div class="see-clear">
+                                <div id="eyesa1"><a href="#myModal1"><i class="fas fa-eye"></i></a></div> |
+                                <div class="clearly"><a href="#">Xem chi tiết &ensp; <i class="fas fa-angle-right"></i></a></div>
+                            </div>
+
+                            <div id="myModal1" class="modal" style="margin-left: 500ps;">
+                                <!-- Modal content -->
+                                <div class="modal-content" style="width: 1050px">
+                                    <span class="close1">&times;</span>
+                                    <div class="modal-cnt">
+                                        <div class="cnt-left">
+                                            <div class="cnt-left-container">
+                                                <div class="mySlides">
+                                                    <img src="https://product.hstatic.net/200000287623/product/co_gai_noi_xu_ngoai_1_-_bia_1_b6a19217868d406d9f61b16112aa4b52_master.jpg">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <script src="./ContentSlide/content-slide1.js"></script>
+
+                                        <div class="cnt-right">
+                                            <h3><b>Cô Gái Nơi Xứ Ngoài - 2</b></h3>
+                                            <div class="prices">
+                                                <span class="discount">49,300₫</span> 
+                                                <span class="normal-price">58,000₫</span>
+                                            </div>
+
+                                            <div class="cnt-right-product">
+                                                <p>Một Kẻ Xứ ngoài bí ẩn đã chạm vào Shiva. Hành động ấy sẽ khiến Shiva dính lời nguyền và biến thành Kẻ Xứ ngoài, làm cô bé yếu đuối vô cùng hoảng sợ, còn thầy thì cực kì hoang mang...</p>
+
+                                                <p class="loai">2 BIẾN THỂ</p>
+                                                <select id="roast" name="biến thể">
+                                                    <option value="low">Bản thường</option>
+                                                    <option value="medium">Bản đặc biệt</option>
+                                                </select>
+
+                                                <input class="met" type="number" value="1" min="1">
+                                                <button class="add-product" data-id="11">Thêm vào giỏ hàng</button>
+
+                                                <div class="social">
+                                                    <span class="loais">SHARE OUR PRODUCT!</span>
+
+                                                    <a href="#" class="fab fa-facebook"></a>
+                                                    <a href="#" class="fab fa-twitter"></a>
+                                                    <a href="#" class="fab fa-google"></a>
+                                                    <a href="#" class="fab fa-instagram"></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <script src="./Modal/modal1.js"></script>
+
+                        
                         <div class="col-sm-3">
                             <div class="hover-image">
                                 <img class="psr" src="https://product.hstatic.net/200000287623/product/boxset_tulipxmimosa_suu_tam_715x1080_b1c1b4c73c5e4eb98b69eaf05a1f6967_master.jpg" alt="since">
@@ -612,8 +624,10 @@
 
                                         <div class="cnt-right">
                                             <h3><b>Tulip x Mimosa (Boxset Manga 2 tập)</b></h3>
-                                            <div class="prices">228,000₫
-                                                <span>240,000₫</span>
+                                            <div class="prices">
+                                                <span class="discount"> 228,000₫</span>
+                                               
+                                                <span class="normal-price">240,000₫</span>
                                             </div>
 
                                             <div class="cnt-right-product">
@@ -621,7 +635,7 @@
                                                 <p>Đây là một câu chuyện ấm áp, tựa như cây cối đâm chồi nảy lộc khi tuyết tan.</p>
 
                                                 <input class="met" type="number" value="5" min="1">
-                                                <button class="add-product">Thêm vào giỏ hàng</button>
+                                                <button class="add-product" data-id="16">Thêm vào giỏ hàng</button>
 
                                                 <div class="social">
                                                     <span class="loais">SHARE OUR PRODUCT!</span>
@@ -670,8 +684,9 @@
 
                                         <div class="cnt-right" style="margin-top: -10px">
                                             <h3><b>Câu chuyện kẹo ngọt</b></h3>
-                                            <div class="prices">174,250₫
-                                                <span>205,000₫</span>
+                                            <div class="prices">
+                                                <span class="discount">174,250₫</span>
+                                                <span class="normal-price">205,000₫</span>
                                             </div>
 
                                             <div class="cnt-right-product">
@@ -685,7 +700,7 @@
                                                 </select>
 
                                                 <input class="met" type="number" value="5" min="1">
-                                                <button class="add-product">Thêm vào giỏ hàng</button>
+                                                <button class="add-product" data-id="17">Thêm vào giỏ hàng</button>
 
                                                 <div class="social">
                                                     <span class="loais">SHARE OUR PRODUCT!</span>
@@ -734,8 +749,10 @@
 
                                         <div class="cnt-right" style="margin-top: -7px;">
                                             <h3><b>Hiệu sách cuối cùng ở London</b></h3>
-                                            <div class="prices">108.000₫
-                                                <span>180.000₫</span>
+                                            <div class="prices">
+                                                <span class="discount">108.000₫</span>
+                                                
+                                                <span class="normal-price">180.000₫</span>
                                             </div>
 
                                             <div class="cnt-right-product">
@@ -744,7 +761,7 @@
                                                 <p class="loai">SỐ LƯỢNG</p>
 
                                                 <input class="met" type="number" value="5" min="1">
-                                                <button class="add-product">Thêm vào giỏ hàng</button>
+                                                <button class="add-product" data-id="18">Thêm vào giỏ hàng</button>
 
                                                 <div class="social">
                                                     <span class="loais">SHARE OUR PRODUCT!</span>
@@ -792,8 +809,9 @@
 
                                         <div class="cnt-right" style="margin-top: -15px">
                                             <h3><b>Ngàn mặt trời rực rỡ</b></h3>
-                                            <div class="prices">104.000đ
-                                                <span>130.000 đ</span>
+                                            <div class="prices">
+                                                <span class="discount">104.000đ</span> 
+                                                <span class="normal-price">130.000 đ</span>
                                             </div>
 
                                             <div class="cnt-right-product">
@@ -803,7 +821,7 @@
                                                 <p class="loai">SỐ LƯỢNG</p>
 
                                                 <input class="met" type="number" value="5" min="1">
-                                                <button class="add-product">Thêm vào giỏ hàng</button>
+                                                <button class="add-product" data-id="19">Thêm vào giỏ hàng</button>
 
                                                 <div class="social">
                                                     <span class="loais">SHARE OUR PRODUCT!</span>
@@ -850,8 +868,9 @@
 
                                         <div class="cnt-right">
                                             <h3><b>Camilia</b></h3>
-                                            <div class="prices">68.000₫
-                                                <span>80.000₫</span>
+                                            <div class="prices">
+                                                <span class="discount">68.000₫</span>
+                                                <span class="normal-price">80.000₫</span>
                                             </div>
 
                                             <div class="cnt-right-product">
@@ -860,7 +879,7 @@
                                                 <p class="loai">SỐ LƯỢNG</p>
 
                                                 <input class="met" type="number" value="5" min="1">
-                                                <button class="add-product">Thêm vào giỏ hàng</button>
+                                                <button class="add-product" data-id="20">Thêm vào giỏ hàng</button>
 
                                                 <div class="social">
                                                     <span class="loais">SHARE OUR PRODUCT!</span>
@@ -907,8 +926,9 @@
 
                                         <div class="cnt-right">
                                             <h3><b>Cung đàn báo oán</b></h3>
-                                            <div class="prices">27,000₫
-                                                <span>108,000₫</span>
+                                            <div class="prices">
+                                                <span class="discount">27,000₫</span>
+                                                <span class="normal-price">108,000₫</span>
                                             </div>
 
                                             <div class="cnt-right-product">
@@ -917,7 +937,7 @@
                                                 <p class="loai">SỐ LƯỢNG</p>
 
                                                 <input class="met" type="number" value="5" min="1">
-                                                <button class="add-product">Thêm vào giỏ hàng</button>
+                                                <button class="add-product" data-id="21">Thêm vào giỏ hàng</button>
 
                                                 <div class="social">
                                                     <span class="loais">SHARE OUR PRODUCT!</span>
@@ -938,15 +958,15 @@
                 </div>
 
                 <ul class="listPage">
-                    <li class="active">1</li>
-                    <li>2</li>
+             
                 </ul>
                 <script src="./JavaScript/phan-trang.js"></script>
             </div>
         </div>
     </div>
 </div>
-<script src="tabs.js"></script>
 <script src="./product.js"></script>
+
+<script src="../Main Page/Order.js"></script>
 </body>
 </html>

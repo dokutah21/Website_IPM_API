@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="stylePage.css">
 
     <script src="/angular.min.js"></script>
-    <script src="./LoaiTaiKhoan.js"></script>
+    <script src="./HoaDon.js"></script>
    
     <title>Admin Page</title>
 </head>
@@ -93,15 +93,13 @@
                 <button style="margin-bottom: 25px; margin-top: 20px; padding: 10px; background-color: white; border: 1px solid;" ng-click="add_HoaDon()">Thêm mới</button>
                 <button style="margin-bottom: 25px; margin-top: 20px; padding: 10px; background-color: white; border: 1px solid;" ng-click="deleteSelected()">Xóa nhiều</button>
                 
-                <div style="height: 50px; margin-top: -25px;">
-                    <label for="">Hiển thị list:</label>
-                    <select style="margin-bottom: 25px; margin-top: 20px; padding: 10px;"   id="pageSize " ng-change="LoadHoaDon()" ng-model="pageSize" convert-to-number >
-                        <option value="0">Hiển thị toàn bộ</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="6">6</option>
-                    </select>
-                </div><br>
+                <label for="" style="margin-left: 660px;">Hiển thị list:</label>
+                <select style="margin-bottom: 25px; margin-top: 20px; padding: 10px; "   id="pageSize " ng-change="LoadHoaDon()" ng-model="pageSize" convert-to-number >
+                    <option value="0">Hiển thị toàn bộ</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="6">6</option>
+                </select>
                 
                 <div class="sanpham-table" style="height: 400px ">
                     <!-- Danh sách loại tài khoản -->
@@ -116,23 +114,22 @@
                             <td>Ngày duyệt</td>
                             <td>Ghi chú</td>
                             <td>Trạng thái</td>
-                            <td>Ghi chú</td>
                             <td>Chọn</td>
                             <td>Tác vụ</td>
                         </thead>
                         <tr ng-repeat="x in danhsachHoaDon">
-                            <td>{{x.MaHoaDon}}</td>
-                            <td>{{x.MaVanChuyen}}</td>
-                            <td>{{x.MaKhachHang}}</td>
-                            <td>{{x.TenKH}}</td>
-                            <td>{{x.DiaChi}}</td>
-                            <td>{{x.NgayTao}}</td>
-                            <td>{{x.NgayDuyet}}</td>
-                            <td>{{x.GhiChu}}</td>
-                            <td>{{x.TrangThai}}</td>
+                            <td>{{x.maHoaDon}}</td>
+                            <td>{{x.maVanChuyen}}</td>
+                            <td>{{x.maKhachHang}}</td>
+                            <td>{{x.tenKH}}</td>
+                            <td>{{x.diaChi}}</td>
+                            <td>{{x.ngayTao}}</td>
+                            <td>{{x.ngayDuyet}}</td>
+                            <td>{{x.ghiChu}}</td>
+                            <td>{{x.trangThai}}</td>
                             <td><input ng-model="x.selected" type="checkbox"></td>
                             <td>
-                                <button style="background-color: red;color: white; padding: 5px 5px; border: 1px solid black;" ng-click="deleteHoaDon_byID(x.maLoai)">-</button>
+                                <button style="background-color: red;color: white; padding: 5px 5px; border: 1px solid black;" ng-click="deleteHoaDon_byID(x.maHoaDon)">-</button>
                                 <button style="background-color: red;color: white; padding: 5px 5px; border: 1px solid black;" ng-click="editHoaDon(x)">Edit</button>
                             </td>
                             </td>
@@ -154,6 +151,7 @@
                             top: 7%;
                             transition: 0.5s;
                             margin-left: -20px;
+                            overflow: scroll;
                         }
 
                         .formQL_HoaDon span
@@ -172,26 +170,75 @@
                             font-size: 15px;
                             padding: 5px;
                         }
-                    
+
+                        .left{
+                            float: left;
+                            padding-right: 100px;
+                            margin-top: 50px;
+                            margin-left: 100px;
+                        }
+
+                        .right-col{margin-top: 50px;}
                     </style>
 
                     <span style="background-color: red; color:white; position: absolute;right: 5px;top: 5px; padding: 5px; border: 1px solid black;" ng-click="outForm()">x</span>
-                    <br>
+                    
 
-                    <span style="width: 200px;" class="tieude">Mã Loại Tài Khoản</span> <input type="number" placeholder=" Nhập mã tài khoản" ng-model="maLoai" min="1"><br>
-                    <br>
+                    <div class="left">
+                        <span style="width: 200px;" class="tieude">Mã hóa đơn</span> <input type="number" placeholder=" Nhập mã hóa đơn" ng-model="maHoaDon" min="1"><br>
+                        <br>
 
-                    <span  style="width: 200px;" class="tieude">Phân Quyền</span> 
-                        <select  class="tieude" ng-model="phanQuyen">
-                            <option value="Admin">Admin</option>
-                            <option value="Customer">Khách hàng</option>
-                            <option value="Employee">Nhân Viên</option>
+                        <span style="width: 200px;" class="tieude">Mã vận chuyển</span> <input type="number" placeholder=" Nhập mã vận chuyển" ng-model="maVanChuyen" min="1"><br>
+                        <br>
+
+                        <span style="width: 200px;" class="tieude">Mã khách hàng</span> <input type="number" placeholder=" Nhập mã khách hàng" ng-model="maKhachHang" min="1"><br>
+                        <br>
+
+                        <span  style="width: 200px;"  class="tieude"n>Tên khách hàng</span> <input type="text" placeholder=" Nhập tên khách hàng" ng-model="tenKH"><br>
+                        <br>
+                        
+                        <span  style="width: 200px;"  class="tieude"n>Địa chỉ</span> <input type="text" placeholder=" Nhập địa chỉ" ng-model="diaChi"><br>
+                        <br>
+
+                        <span  style="width: 200px;" class="tieude">Ngày tạo</span>
+                        <input type="date" name="bday" ng-model="ngayTao">
+                        <br><br>
+                        
+                        <span  style="width: 200px;"  class="tieude"n>Ngày duyệt</span>
+                        <input type="date" name="bday" ng-model="ngayDuyet">
+                        <br><br>
+                        
+                        <span  style="width: 200px;"  class="tieude"n>Ghi chú</span> <input type="text" placeholder=" Nhập địa chỉ" ng-model="ghiChu"><br>
+                        <br>
+
+                        <span  style="width: 200px;" class="tieude">Trạng Thái</span> 
+                        <select  class="tieude" ng-model="trangThai">
+                            <option value="false">False</option>
+                            <option value="true">True</option>
                         </select>
-                    <br><br>
-                    
-                    <span  style="width: 200px;"  class="tieude"n>Tên chức danh</span> <input type="text" placeholder=" Nhập tên chức danh" ng-model="tenChucDanh"><br>
-                    <br>
-                    
+                        <br><br>
+                    </div>
+
+                    <div class="right-col">
+                        <span style="width: 200px;" class="tieude">Mã chi tiết hóa đơn</span> <input type="number" placeholder=" Nhập mã chi tiết hóa đơn" ng-model="maChiTietHoaDon" min="1"><br>
+                        <br>
+
+                        <span style="width: 200px;" class="tieude">Mã hóa đơn</span> <input type="number" placeholder=" Nhập mã hóa đơn" ng-model="maHoaDon" min="1"><br>
+                        <br>
+
+                        <span style="width: 200px;" class="tieude">Mã sách</span> <input type="number" placeholder=" Nhập mã sách" ng-model="maSach" min="1"><br>
+                        <br>
+
+                        <span style="width: 200px;" class="tieude">Mã giảm giá</span> <input type="number" placeholder=" Nhập mã giảm giá" ng-model="maGiamGia" min="1"><br>
+                        <br>
+
+                        <span style="width: 200px;" class="tieude">Số lượng</span> <input type="number" placeholder=" Nhập số lượng" ng-model="maSoLuong" min="1"><br>
+                        <br>
+
+                        <span style="width: 200px;" class="tieude">Tổng giá</span> <input type="number" placeholder=" Nhập tổng giá" ng-model="tongGia" min="1"><br>
+
+
+                    </div>
                     <button  style="margin-bottom: 25px; margin-top: 20px; padding: 10px;" ng-click="save()">Save</button>
                 </div>
             </div>    

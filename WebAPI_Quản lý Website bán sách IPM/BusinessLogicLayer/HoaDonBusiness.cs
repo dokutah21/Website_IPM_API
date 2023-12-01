@@ -11,10 +11,32 @@ namespace BusinessLogicLayer
         {
             _res = res;
         }
+
+        public List<HoaDonModel> getAll_HoaDon()
+        {
+            return _res.getAll_HoaDon();
+        }
         public HoaDonModel GetDatabyID(string id)
         {
             return _res.GetDatabyID(id);
         }
+
+        public ChiTietHoaDonModel GetDatabyIDHD(string id)
+        {
+            return _res.GetDatabyIDHD(id);
+        }
+
+        public List<HoaDonModel> GetOrderByUsId(string id)
+        {
+            return _res.GetOrderByUsId(id);
+        }
+
+
+        public HoaDonModel GetOrderDetailByOrderId(string id)
+        {
+            return _res.GetOrderDetailByOrderId(id);
+        }
+
         public bool Create(HoaDonModel model)
         {
             return _res.Create(model);

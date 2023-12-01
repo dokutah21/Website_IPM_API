@@ -1,0 +1,11 @@
+SELECT TOP (1000) [MaHoaDon]
+      ,[MaVanChuyen]
+      ,[MaKhachHang]
+      ,[TenKH]
+      ,[DiaChi]
+      ,[NgayTao]
+      ,[NgayDuyet]
+      ,[GhiChu]
+      ,[TrangThai]
+  FROM [WebsiteIPM].[dbo].[HoaDon]
+  

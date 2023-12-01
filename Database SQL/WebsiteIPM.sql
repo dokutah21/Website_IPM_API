@@ -147,7 +147,7 @@ INSERT INTO SanPham(MaSach, TenSach ,TacGia , TenNXB, PhienBan, AnhSach ,TrangTh
 INSERT INTO SanPham(MaSach, TenSach ,TacGia , TenNXB, PhienBan, AnhSach ,TrangThai ,Gia) VALUES (10, N'Hoàng hôn nơi mắt người', N'FAELA', N'SELF', N'Đặc biệt',N'#' , 1, 499000)
 INSERT INTO SanPham(MaSach, TenSach ,TacGia , TenNXB, PhienBan, AnhSach ,TrangThai ,Gia) VALUES (11, N'Cô gái nơi xứ ngoài 2', N'NAGABE',N'Hồng Đức', N'Đặc biệt',N'https://product.hstatic.net/200000287623/product/co-gai-noi-xu-ngoai-1-banthuong__1__62ddca1969ae4609b1ecd8ec7095c218_master.jpg', 1, 59000)
 
-DELETE FROM SanPham WHERE MaSach = 7;
+DELETE FROM SanPham WHERE MaSach = 8;
 
 DELETE FROM ChiTietSanPham WHERE MaChiTietSP = 10;
 

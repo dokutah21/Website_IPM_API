@@ -51,5 +51,30 @@ namespace API.BanSach.Controllers
                 throw new Exception(ex.Message);
             }
         }
+
+        [Route("search-SanPhamCusPro")]
+        [HttpPost]
+        public IActionResult SearchSPC([FromBody] Dictionary<string, object> formData)
+        {
+            try
+            {
+                var page = int.Parse(formData["page"].ToString());
+                var pageSize = int.Parse(formData["pageSize"].ToString());
+                long total = 0;
+                var data = _SanPhamBusiness.Search(page, pageSize, out total);
+                return Ok(
+                    new
+                    {
+                        TotalItems = total,
+                        Data = data,
+                        Page = page,
+                        PageSize = pageSize
+                    });
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

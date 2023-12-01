@@ -9,6 +9,25 @@ namespace DataAccessLayer
         {
             _dbHelper = dbHelper;
         }
+
+        public List<HoaDonModel> getAll_HoaDon()
+        { 
+
+            string msgError = "";
+            try
+            {
+                var result = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_getAll_HoaDon");
+                if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
+                {
+                    throw new Exception(Convert.ToString(result) + msgError);
+                }
+                return result.ConvertTo<HoaDonModel>().ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public HoaDonModel GetDatabyID(string MaHoaDon)
         {
             string msgError = "";
@@ -26,8 +45,59 @@ namespace DataAccessLayer
             }
         }
 
-        public bool Create(HoaDonModel model)
+        public ChiTietHoaDonModel GetDatabyIDHD(string MaHoaDon)
         {
+            string msgError = "";
+            try
+            {
+                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_GetChiTietHoaDonID",
+                     "@MaHoaDon", MaHoaDon);
+                if (!string.IsNullOrEmpty(msgError))
+                    throw new Exception(msgError);
+                return dt.ConvertTo<ChiTietHoaDonModel>().FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<HoaDonModel> GetOrderByUsId(string userId)
+        {
+            string msgError = "";
+            try
+            {
+                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "Pro_GetOrderByUsId",
+                     "@userId", userId);
+                if (!string.IsNullOrEmpty(msgError))
+                    throw new Exception(msgError);
+                return dt.ConvertTo<HoaDonModel>().ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public HoaDonModel GetOrderDetailByOrderId(string orderId)
+        {
+            string msgError = "";
+            try
+            {
+                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "Pro_GetOrderDetailByOrderId",
+                     "@orderId", orderId);
+                if (!string.IsNullOrEmpty(msgError))
+                    throw new Exception(msgError);
+                return dt.ConvertTo<HoaDonModel>().FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public bool Create(HoaDonModel model)
+        { 
             string msgError = "";
             try
             {

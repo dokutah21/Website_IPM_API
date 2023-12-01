@@ -79,3 +79,4 @@ D:\2. Document For Year 3\Kỳ 1 (2023-2024)\Phát triển phần mềm hướng
 D:\2. Document For Year 3\Kỳ 1 (2023-2024)\Phát triển phần mềm hướng dịch vụ\Bài tập lớn\WebAPI_IPM_User\API_User\obj\Debug\net6.0\API_User.csproj.CopyComplete
 D:\2. Document For Year 3\Kỳ 1 (2023-2024)\Phát triển phần mềm hướng dịch vụ\Bài tập lớn\WebAPI_IPM_User\API_User\obj\Debug\net6.0\API_User.genruntimeconfig.cache
 D:\2. Document For Year 3\Kỳ 1 (2023-2024)\Phát triển phần mềm hướng dịch vụ\Bài tập lớn\WebAPI_IPM_User\API_User\obj\Debug\net6.0\ref\API_User.dll
+D:\2. Document For Year 3\Kỳ 1 (2023-2024)\Phát triển phần mềm hướng dịch vụ\Bài tập lớn\WebAPI_IPM_User\API_User\obj\Debug\net6.0\API_User.MvcApplicationPartsAssemblyInfo.cs

@@ -19,6 +19,14 @@ const btnLogin = $(".btn-signIn");
     .done(res=>{
         console.log(res)
         localStorage.setItem("login",JSON.stringify(res))
+
+        if (res.role === "user") {
+            window.location.href = "product.html";
+        } else if (res.role === "admin") {
+            window.location.href = "MainPage.html";
+        } else {
+            console.log("Unknown role");
+        }
     })
     .fail(err=>{
         console.log(err)

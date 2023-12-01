@@ -9,7 +9,14 @@ namespace BusinessLogicLayer
 {
     public partial interface IHoaDonBusiness
     {
+        List<HoaDonModel> getAll_HoaDon();
         HoaDonModel GetDatabyID(string id);
+
+        ChiTietHoaDonModel GetDatabyIDHD(string id);
+
+        List<HoaDonModel> GetOrderByUsId(string id);
+
+        HoaDonModel GetOrderDetailByOrderId(string id);
 
         bool Create(HoaDonModel model);
 
